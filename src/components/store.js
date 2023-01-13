@@ -12,23 +12,24 @@ const news = reactive([
     {h1: 'News 4', text: 'lorem 4'},
 ])
 
-function openBtnNews(){
-  if(!this.isOpen.value ){
-    this.watchCount.value += 1
-  } 
-  this.isOpen.value  = !this.isOpen.value 
-}
+// function openBtnNews(){
+//   if(!this.isOpen.value ){
+//     this.watchCount.value += 1
+//     this.$emit('counter')
+//   } 
+//   this.isOpen.value  = !this.isOpen.value 
+// }
 
-function redBtnNews(){
-  if(!this.wasRead.value ){
-    this.isOpen.value  = false
-    this.readCount.value += 1
-  }
-  else{
-    this.readCount.value -= 1
-  }
-  this.wasRead.value = !this.wasRead.value 
-}
+// function redBtnNews(){
+//   if(!this.wasRead.value ){
+//     this.isOpen.value  = false
+//     this.readCount.value += 1 
+//   }
+//   else{
+//     this.readCount.value -= 1
+//   }
+//   this.wasRead.value = !this.wasRead.value 
+// }
 
 export function store(){
     return {
@@ -37,7 +38,5 @@ export function store(){
         readCount,
         isOpen,
         wasRead,
-        openBtnNews,
-        redBtnNews
     }
 }

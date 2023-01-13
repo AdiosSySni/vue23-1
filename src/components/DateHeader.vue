@@ -2,7 +2,6 @@
 import { ref, inject } from 'vue'
 const store = inject('newsStore')
 
-
 let now = new Date().toLocaleDateString()
 
 </script>
