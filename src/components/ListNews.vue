@@ -15,6 +15,6 @@ const props = defineProps({
   <div class="card">
     <button class="btn" @click="$emit('open-news', props.id)" >{{isOpen ? 'Свернуть' : 'Развернуть'}}</button>
     <p v-if="isOpen">{{ msg }}</p>
-    <!-- <button  class="btn" @click="" >{{wasRead ? 'Не прочитано' : 'Прочитано'}}</button> -->
+    <button  v-if="isOpen" class="btn" @click="$emit('read-news', props.id)"  >{{wasRead ? 'Не прочитано' : 'Прочитано'}}</button>
   </div>
 </template>

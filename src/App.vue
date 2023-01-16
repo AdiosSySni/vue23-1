@@ -17,26 +17,31 @@ const readCount = ref(0)
 
 function open(id) {
     if(!newsArr[id].isOpen) {
-      watchCount.value++;
+      watchCount.value++
       newsArr[id].isOpen = true
     }
     else {
       newsArr[id].isOpen = false
     }
-    console.log(newsArr[0])
 }
 
-// function read(id) {
-//   if(!newsArr.wasRead) {
-//     readCount.value++
-//   }
-// }
+function read(id) {
+    if(!newsArr[id].wasRead) {
+      readCount.value++
+      newsArr[id].wasRead = true
+    }
+    else {
+      newsArr[id].wasRead = false
+      readCount.value--
+    }
+}
+
 
 </script>
 
 <template>
   <h1>Актуальные новости: {{now}}</h1>
-  <p>Открыто: {{watchCount}} || Просмотрено: {{readRate}}</p>  
+  <p>Открыто: {{watchCount}} || Прочитано: {{readCount}}</p>  
   <list-news v-for="elem in newsArr"
     :key="elem"
     :id="elem.id"
@@ -45,5 +50,6 @@ function open(id) {
     :isOpen="elem.isOpen"
     :wasRead="elem.wasRead"
     @open-news="open"
+    @read-news="read"
   />
 </template>
