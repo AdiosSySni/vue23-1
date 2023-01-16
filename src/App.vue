@@ -1,30 +1,56 @@
 <script setup>
 import './theme.css'
-import { provide } from 'vue'
-import { store } from './components/store' 
+import {ref, reactive} from 'vue'
 
-const newsStore = store()
-provide('newsStore', newsStore)
 let now = new Date().toLocaleDateString()
 
-function openBtnNews(n) {
-  if(!newsStore.isOpen.value) {
-    newsStore.watchCount.value += n
-    console.log(newsStore.watchCount.value)
-  }
-  newsStore.isOpen.value = !newsStore.isOpen.value
+const newsArr = [
+  {id: 0, title: 'News1', isOpen: false, wasRead: false, text: 'text1'},
+  {id: 1, title: 'News2', isOpen: false, wasRead: false, text: 'text2'},
+  {id: 2, title: 'News3', isOpen: false, wasRead: false, text: 'text3'}
+]
+ 
+
+console.log(newsArr[0].id)
+
+const watchCount = ref(0)
+const readCount = ref(0)
+
+
+function open(id) {
+    console.log(id)
+   
+    // if(!newsArr.isOpen) {
+    //   watchCount.value++;
+      if(newsArr.id) {
+        newsArr.isOpen = true
+        console.log('check')
+      }
+    // }
 }
 
-function readBtnNews(n) {
-  if(!newsStore.wasRead.value) {
-    newsStore.wasRead.value = false
-    newsStore.readCount.value += n
-  }
- newsStore.wasRead.value = !newsStore.wasRead.value
-}
+
+// function read(id) {
+//   if(!newsArr.wasRead) {
+//     readCount.value++
+//   }
+// }
+
+
+
+
 </script>
 
 <template>
-  <date-header />
-  <news-header v-for="elem in newsStore.news" @countWatchNews="openBtnNews" @countReadNews="readBtnNews" :key="elem" :newsTitle="elem.h1" :newsText="elem.text" />
+  <h1>Актуальные новости: {{now}}</h1>
+  <p>Открыто: {{watchCount}} || Просмотрено: {{readRate}}</p>  
+  <list-news v-for="elem in newsArr"
+    :key="elem"
+    :id="elem.id"
+    :title="elem.title"
+    :msg="elem.text"
+    :isOpen="newsArr.isOpen"
+    :wasRead="newsArr.wasRead"
+    @open-news="open"
+  />
 </template>

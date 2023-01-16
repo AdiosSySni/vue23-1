@@ -1,9 +1,7 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import NewsHeader from './components/NewsHeader.vue'
-import DateHeader from './components/DateHeader.vue'
+import ListNews from './components/ListNews.vue'
 
 createApp(App)
-.component('news-header', NewsHeader)
-.component('date-header', DateHeader)
+.component('list-news', ListNews)
 .mount('#app')
