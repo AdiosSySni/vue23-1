@@ -4,40 +4,33 @@ import {ref, reactive} from 'vue'
 
 let now = new Date().toLocaleDateString()
 
-const newsArr = [
+let newsArr = reactive([
   {id: 0, title: 'News1', isOpen: false, wasRead: false, text: 'text1'},
   {id: 1, title: 'News2', isOpen: false, wasRead: false, text: 'text2'},
   {id: 2, title: 'News3', isOpen: false, wasRead: false, text: 'text3'}
-]
+])
  
-
-console.log(newsArr[0].id)
+console.log(newsArr[0].isOpen)
 
 const watchCount = ref(0)
 const readCount = ref(0)
 
-
 function open(id) {
-    console.log(id)
-   
-    // if(!newsArr.isOpen) {
-    //   watchCount.value++;
-      if(newsArr.id) {
-        newsArr.isOpen = true
-        console.log('check')
-      }
-    // }
+    if(!newsArr[id].isOpen) {
+      watchCount.value++;
+      newsArr[id].isOpen = true
+    }
+    else {
+      newsArr[id].isOpen = false
+    }
+    console.log(newsArr[0])
 }
-
 
 // function read(id) {
 //   if(!newsArr.wasRead) {
 //     readCount.value++
 //   }
 // }
-
-
-
 
 </script>
 
@@ -49,8 +42,8 @@ function open(id) {
     :id="elem.id"
     :title="elem.title"
     :msg="elem.text"
-    :isOpen="newsArr.isOpen"
-    :wasRead="newsArr.wasRead"
+    :isOpen="elem.isOpen"
+    :wasRead="elem.wasRead"
     @open-news="open"
   />
 </template>
