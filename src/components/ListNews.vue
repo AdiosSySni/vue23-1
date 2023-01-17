@@ -1,4 +1,7 @@
 <script setup>
+import AppButton from './AppButton.vue'
+import AppListNews from './AppListNews.vue'
+
 const props = defineProps({
   id: Number,
   title: String,
@@ -6,15 +9,17 @@ const props = defineProps({
   isOpen: Boolean,
   wasRead: Boolean,
 })
-
 </script>
-
-
 
 <template>
   <div class="card">
-    <button class="btn" @click="$emit('open-news', props.id)" >{{isOpen ? 'Свернуть' : 'Развернуть'}}</button>
-    <p v-if="isOpen">{{ msg }}</p>
-    <button  v-if="isOpen" class="btn" @click="$emit('read-news', props.id)"  >{{wasRead ? 'Не прочитано' : 'Прочитано'}}</button>
+    <app-button @action="$emit('open-news', props.id)">{{ isOpen ? 'Свернуть' : 'Развернуть' }}</app-button>
+    <hr/>
+    <!-- <p v-if="isOpen">{{ msg }}</p> -->
+    <app-list-news v-if="isOpen"/>
+    <app-button  v-if="!wasRead" class="primary" @action="$emit('read-news', props.id)">Прочитано</app-button>
+    <app-button  v-if="wasRead" class="danger" @action="$emit('read-news', props.id)">Не прочитано</app-button>
   </div>
+  
+  
 </template>

@@ -1,6 +1,6 @@
 <script setup>
-import './theme.css'
-import {ref, reactive} from 'vue'
+import './assets/theme.css'
+import {ref, reactive, provide} from 'vue'
 
 let now = new Date().toLocaleDateString()
 
@@ -10,6 +10,8 @@ let newsArr = reactive([
   {id: 2, title: 'News3', isOpen: false, wasRead: false, text: 'text3'}
 ])
  
+provide('newsArr', newsArr) 
+
 console.log(newsArr[0].isOpen)
 
 const watchCount = ref(0)
@@ -34,9 +36,8 @@ function read(id) {
       newsArr[id].wasRead = false
       readCount.value--
     }
+    // newsArr[id].isOpen = false
 }
-
-
 </script>
 
 <template>
