@@ -6,9 +6,7 @@ const newsArr = inject('newsArr')
 <template>
     <h3>Список всех новостей</h3>
     <ul>
-        <li v-for="item in newsArr" 
-        :key="item">
-           {{ item.title }}
+        <li v-for="item in newsArr" :key="item"> {{ item.title }}
            <span v-if="item.wasRead">!!!</span>
         </li>
     </ul>

@@ -17,8 +17,14 @@ const props = defineProps({
     <hr/>
     <!-- <p v-if="isOpen">{{ msg }}</p> -->
     <app-list-news v-if="isOpen"/>
-    <app-button  v-if="!wasRead" class="primary" @action="$emit('read-news', props.id)">Прочитано</app-button>
-    <app-button  v-if="wasRead" class="danger" @action="$emit('read-news', props.id)">Не прочитано</app-button>
+
+    <app-button  v-if="!wasRead" 
+    class="primary" 
+    @action="$emit('read-news', props.id)">Прочитано</app-button>
+    
+    <app-button  v-if="wasRead" 
+    class="danger" 
+    @action="$emit('read-news', props.id)">Не прочитано</app-button>
   </div>
   
   

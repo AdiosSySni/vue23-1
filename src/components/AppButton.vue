@@ -11,7 +11,9 @@ const props = defineProps({
 </script>
 
 <template>
-    <button class="btn" :class="color" @click="$emit('action')">
+    <button class="btn" 
+    :class="color" 
+    @click="$emit('action')">
         <slot></slot>
     </button>
 </template>
