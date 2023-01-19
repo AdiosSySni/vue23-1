@@ -1,25 +1,17 @@
 <script setup>
-import {ref, reactive, provide} from 'vue'
-import { store } from './stores/newsStore' 
-import './assets/theme.css'
-
-let now = new Date().toLocaleDateString()
-const newsStore = store()
-provide('newsArr', newsStore.getNews()) 
+  import './assets/theme.css'
+  import appBlock from './components/AppBlock.vue'
 
 </script>
 
 <template>
-  <h1>Актуальные новости: {{now}}</h1>
-  <p>Открыто: {{newsStore.watchCount}} || Прочитано: {{newsStore.readCount}}</p>  
-  <list-news v-for="elem in newsStore.getNews()"
-    :key="elem"
-    :id="elem.id"
-    :title="elem.title"
-    :msg="elem.text"
-    :isOpen="elem.isOpen"
-    :wasRead="elem.wasRead"
-    @open-news="newsStore.open"
-    @read-news="newsStore.read"
-  />
+  <app-block>
+    <p>Текст</p>
+    <template #header> 
+      <h3>Заголовок карточки</h3>
+    </template>
+    <template #footer>
+      <h3>Футер</h3>
+    </template>
+  </app-block>
 </template>
