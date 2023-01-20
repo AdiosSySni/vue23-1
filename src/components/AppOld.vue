@@ -1,6 +1,6 @@
 <script setup>
 import {ref, reactive, provide} from 'vue'
-import { store } from '../stores/newsStore' 
+import { store } from './stores/newsStore' 
 import './assets/theme.css'
 
 let now = new Date().toLocaleDateString()
